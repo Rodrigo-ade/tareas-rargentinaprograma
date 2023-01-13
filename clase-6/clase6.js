@@ -18,6 +18,10 @@ function desocultarElemento(elemento){
     elemento.style.visibility = "visible";
 }
 
+function ocultarElemento(elemento){
+    elemento.style.visibility = "hidden";
+}
+
 function crearFamiliares(){
     let $formularioEdades = document.querySelector("#edades-familiares");
     let cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
@@ -89,6 +93,7 @@ function actualizarResultadoEdad(tipoEdad, edad){
 
 let $botonEnviar = document.querySelector("#boton-cantidad-familiares");
 let $botonCalcular = document.querySelector("#boton-calcular");
+let $botonRecomenzar = document.querySelector("#empezar-nuevamente");
 
 $botonEnviar.onclick = function(){
     crearFamiliares();
@@ -103,4 +108,21 @@ $botonCalcular.onclick = function(){
     actualizarResultadoEdad("promedio", obtenerPromedioEdad(edadesFamiliares) );
 
     desocultarElemento(document.querySelector("#resultados-edades"));
+}
+
+$botonRecomenzar.onclick = limpiarFormulario;
+
+
+function limpiarFormulario(){
+    document.querySelector("#cantidad-familiares").value = "";
+    
+    if(document.querySelectorAll("#edades-familiares .divisor-familiar").length > 0){
+        let divisoresFamiliares = document.querySelectorAll("#edades-familiares .divisor-familiar");
+        for(let i=0; i<divisoresFamiliares.length; i++){
+            divisoresFamiliares[i].remove();
+        }
+    }
+
+    ocultarElemento($botonCalcular);
+    ocultarElemento(document.querySelector("#resultados-edades"));
 }
