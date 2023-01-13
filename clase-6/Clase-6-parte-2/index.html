@@ -8,11 +8,24 @@
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 </head>
 <body>
-    
-
-
-
-
+    <h1>Calculador salarios familiares</h1>
+    <div>
+        <p>Haga click en "Agregar" para añadir familiares</p>
+        <p>Haga click en "Quitar" para quitar familiares</p>
+        <button type="button" id="agregar">Agregar</button>
+        <button type="button" id="quitar">Quitar</button>
+    </div>
+    <form>
+        <div id="lista-familiares">
+        </div>
+    </form>
+        <button type="button" id="calcular">Calcular</button>
+        <div id="lista-resultados">
+            <p>El mayor salario es: <strong id="mayor-salario"></strong></p>
+            <p>El menor salario es: <strong id="menor-salario"></strong></p>
+            <p>El salario anual promedio es: <strong id="promedio-anual-salario"></strong></p>
+            <p>El salario mensual promedio es: <strong id="promedio-mensual-salario"></strong></p>
+        </div>
     <script src='clase6-parte-2.js'></script>
 </body>
 </html>
