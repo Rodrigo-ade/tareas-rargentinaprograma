@@ -90,14 +90,36 @@ function actualizarResultadoEdad(tipoEdad, edad){
     document.querySelector(`#${tipoEdad}-edad`).textContent = edad;
 }
 
+function familiaresExisten(){
+    let familiaresExisten = false;
+    if(document.querySelectorAll("#edades-familiares .divisor-familiar").length > 0){
+        familiaresExisten = true;
+    }
+
+    return familiaresExisten;
+}
+
 
 let $botonEnviar = document.querySelector("#boton-cantidad-familiares");
 let $botonCalcular = document.querySelector("#boton-calcular");
 let $botonRecomenzar = document.querySelector("#empezar-nuevamente");
 
 $botonEnviar.onclick = function(){
-    crearFamiliares();
-    desocultarElemento($botonCalcular);
+    if(Number(document.querySelector("#cantidad-familiares").value) === 0){
+        alert("Para continuar debes ingresar más de 1 familiar");
+    }else{
+        if(familiaresExisten()){
+            borrarFamiliares();
+            crearFamiliares();
+        }
+        else{
+            crearFamiliares();
+        }
+        desocultarElemento($botonCalcular);
+
+    }
+
+    
 }
 
 $botonCalcular.onclick = function(){
@@ -114,15 +136,16 @@ $botonRecomenzar.onclick = limpiarFormulario;
 
 
 function limpiarFormulario(){
-    document.querySelector("#cantidad-familiares").value = "";
-    
-    if(document.querySelectorAll("#edades-familiares .divisor-familiar").length > 0){
-        let divisoresFamiliares = document.querySelectorAll("#edades-familiares .divisor-familiar");
-        for(let i=0; i<divisoresFamiliares.length; i++){
-            divisoresFamiliares[i].remove();
-        }
-    }
-
+    document.querySelector("#cantidad-familiares").value = "";    
+    borrarFamiliares();
     ocultarElemento($botonCalcular);
     ocultarElemento(document.querySelector("#resultados-edades"));
+}
+
+
+function borrarFamiliares(){
+    let divisoresFamiliares = document.querySelectorAll("#edades-familiares .divisor-familiar");
+    for(let i=0; i<divisoresFamiliares.length; i++){
+        divisoresFamiliares[i].remove();
+    }
 }
