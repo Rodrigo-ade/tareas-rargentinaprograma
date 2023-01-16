@@ -1,0 +1,18 @@
+#edades-familiares{
+    margin-top: 10px;
+}
+
+#boton-calcular{
+    margin-top: 10px;
+    visibility: hidden;
+}
+
+.divisor-familiar{
+    margin-top: 5px;
+}
+
+#resultados-edades{
+    visibility: hidden;
+    color: blue;
+    font-size: 20px;
+}
