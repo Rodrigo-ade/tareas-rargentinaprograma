@@ -1,3 +1,4 @@
+/*
 function probarValidarNombre(){
     console.assert(
         validarNombre("") === 'El nombre debe tener al menos 1 caracter',
@@ -57,3 +58,4 @@ function probarValidarDescripcionRegalo(){
     );
 }
 probarValidarDescripcionRegalo();
+*/

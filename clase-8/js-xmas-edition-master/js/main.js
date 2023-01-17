@@ -1,3 +1,4 @@
+/*
 let nombre = formulario.nombre.value;
 let ciudad = formulario.ciudad.value;
 let comportamiento = formulario.comportamiento.value;
@@ -43,3 +44,4 @@ function validarDescripcionRegalo(descripcionRegalo){
 
     return "";
 }
+*/
