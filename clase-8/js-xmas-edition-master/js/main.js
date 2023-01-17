@@ -51,14 +51,38 @@ function validarFormulario(event){
     let errorCiudad = validarCiudad(ciudad);
     let errorDescripcionRegalo = validarDescripcionRegalo(descripcionRegalo);
 
-    manejarErrores([errorNombre, errorCiudad, errorDescripcionRegalo]);
+    const listaErrores = {
+        nombre: errorNombre,
+        ciudad: errorCiudad,
+        "descripcion-regalo": errorDescripcionRegalo
+    };
+
+    manejarErrores(listaErrores);
+
     event.preventDefault();
 }
 
-function manejarErrores(errores){
-    errorNombre = errores[0];
-    errorCiudad = errores[1];
-    errorDescripcionRegalo = errores[2];
+function manejarErrores(objetoErrores){
+    eliminarErrores();
+    let contadorErrores = 0;
+    const keys = Object.keys(objetoErrores);
+
+    keys.forEach(function(key){
+        const error = objetoErrores[key];
+
+        if(error){
+            $formulario[key].className = "error";
+            agregarError(error);
+            contadorErrores ++;
+        } else{
+            $formulario[key].className = "";
+        }
+    });
+
+    /*//ESTO ES LA SOLUCIÓN "MANUAL" , donde debiamos hardcodear cada error
+    errorNombre = objetoErrores.nombre;
+    errorCiudad = objetoErrores.ciudad;
+    errorDescripcionRegalo = objetoErrores.des;
 
     if(errorNombre){
         $formulario.nombre.className = "error";
@@ -77,4 +101,21 @@ function manejarErrores(errores){
     } else{
         $formulario["descripcion-regalo"].className = "";
     }
+    */
+}
+
+function agregarError(textoError){
+    let $formularioErrores = document.querySelector("#errores");
+    let $error = document.createElement("p");
+    $error.className = "errorFormulario";
+    $error.textContent = textoError;
+    $formularioErrores.appendChild($error);
+}
+
+function eliminarErrores(){
+    let $errores = document.querySelectorAll(".errorFormulario");
+
+    $errores.forEach(function($error){
+        $error.remove();
+    });
 }
