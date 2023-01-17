@@ -1,8 +1,3 @@
-let nombre = formulario.nombre.value;
-let ciudad = formulario.ciudad.value;
-let comportamiento = formulario.comportamiento.value;
-let descripcionRegalo = formulario["descripcion-regalo"].value;
-
 function validarNombre(nombre){
 
     if(nombre.length === 0){
@@ -22,7 +17,7 @@ function validarNombre(nombre){
 
 function validarCiudad(ciudad){
     if(ciudad.length === 0){
-        return "Este campo debe tener al menos 1 caracter";
+        return "La ciudad debe tener al menos 1 caracter";
     }
 
     return "";
@@ -30,15 +25,15 @@ function validarCiudad(ciudad){
 
 function validarDescripcionRegalo(descripcionRegalo){
     if(descripcionRegalo.length === 0){
-        return "Este campo debe tener al menos 1 caracter";
+        return "La descripcion del regalo debe tener al menos 1 caracter";
     }
 
     if(descripcionRegalo.length >= 100){
-        return "Este campo debe tener menos de 100 caracteres";
+        return "La descripcion del regalo debe tener menos de 100 caracteres";
     }
 
     if(!/^[a-z0-9,\. ]+$/i.test(descripcionRegalo)){
-        return `Este campo solo permite letras, numeros, espacios, "," y "." `;
+        return `La descripcion del regalo solo permite letras, numeros, espacios, "," y "." `;
     }
 
     return "";
