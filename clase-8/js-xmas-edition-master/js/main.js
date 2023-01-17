@@ -38,3 +38,43 @@ function validarDescripcionRegalo(descripcionRegalo){
 
     return "";
 }
+
+let $formulario = document.formulario;
+$formulario.onsubmit = validarFormulario;
+
+function validarFormulario(event){
+    let nombre = $formulario.nombre.value;
+    let ciudad = $formulario.ciudad.value;
+    let descripcionRegalo = $formulario["descripcion-regalo"].value;
+
+    let errorNombre = validarNombre(nombre);
+    let errorCiudad = validarCiudad(ciudad);
+    let errorDescripcionRegalo = validarDescripcionRegalo(descripcionRegalo);
+
+    manejarErrores([errorNombre, errorCiudad, errorDescripcionRegalo]);
+    event.preventDefault();
+}
+
+function manejarErrores(errores){
+    errorNombre = errores[0];
+    errorCiudad = errores[1];
+    errorDescripcionRegalo = errores[2];
+
+    if(errorNombre){
+        $formulario.nombre.className = "error";
+    } else{
+        $formulario.nombre.className = "";
+    }
+
+    if(errorCiudad){
+        $formulario.ciudad.className = "error";
+    } else{
+        $formulario.ciudad.className = "";
+    }
+
+    if(errorDescripcionRegalo){
+        $formulario["descripcion-regalo"].className = "error";
+    } else{
+        $formulario["descripcion-regalo"].className = "";
+    }
+}
