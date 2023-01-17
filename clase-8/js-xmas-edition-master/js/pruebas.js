@@ -23,7 +23,7 @@ probarValidarNombre();
 
 function probarValidarCiudad(){
     console.assert(
-        validarCiudad("") === "Este campo debe tener al menos 1 caracter",
+        validarCiudad("") === "La ciudad debe tener al menos 1 caracter",
         "validarCiudad no validó que ciudad no sea vacio",
     );
 
@@ -31,23 +31,22 @@ function probarValidarCiudad(){
         validarCiudad("Buenos Aires") === "",
         "validarCiudad no funcionó con una ciudad Correcta",
     );
-
 }
 probarValidarCiudad();
 
 function probarValidarDescripcionRegalo(){
     console.assert(
-        validarDescripcionRegalo("") === "Este campo debe tener al menos 1 caracter",
+        validarDescripcionRegalo("") === "La descripcion del regalo debe tener al menos 1 caracter",
         "validarDescripcionRegalo no validó que descripcionRegalo no sea vacio",
     );
 
     console.assert(
-        validarDescripcionRegalo("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") === "Este campo debe tener menos de 100 caracteres",
+        validarDescripcionRegalo("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa") === "La descripcion del regalo debe tener menos de 100 caracteres",
         "validarDescripcionRegalo no validó que descripcionRegalo tenga menos de 100 caracteres",
     );
 
-    console.assert(
-        validarDescripcionRegalo("Quiero una pelot@%&") === `Este campo solo permite letras, numeros, espacios, "," y "." `,
+    console.assert(                                         
+        validarDescripcionRegalo("Quiero una pelot@%&") === `La descripcion del regalo solo permite letras, numeros, espacios, "," y "." `,
         "validarDescripcionRegalo no validó que descripcionRegalo tenga solo letras, numeros, espacios, comas y puntos",
     );
 
