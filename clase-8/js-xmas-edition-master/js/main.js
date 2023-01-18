@@ -71,40 +71,44 @@ function manejarErrores(objetoErrores){
 
         if(error){
             $formulario[key].className = "error";
-            agregarError(error,key);
+            borrarError(key);
+            agregarError(key,error);
             contadorErrores ++;  
         } else{
             $formulario[key].className = "";
-
-            let $errores = document.querySelectorAll("form ul p");
-            $errores.forEach(function($error){
-                if($error.className === key){
-                    $error.remove();
-                }
-            });
+            borrarError(key);
         }
+
+
     });
 }
 
-function agregarError(textoError, llaveError){
-    let $errores = document.querySelectorAll("form ul p");
-    let errorYaCreado = false;
-    $errores.forEach(function($error){
-        if($error.textContent === textoError){
-            errorYaCreado = true;
+    function agregarError(key, errorTexto){
+        let $errores = document.querySelectorAll("#errores p");
+        let errorExiste = false;
+        $errores.forEach(function($error){
+            if ($error.textContent === errorTexto){
+                errorExiste = true;
+            }
+        });
+
+        if(!errorExiste){
+            let $formularioError = document.querySelector("#errores");               
+            let $error = document.createElement("p");            
+            $error.textContent = errorTexto;
+            $error.className = key;
+            $formularioError.appendChild($error);
         }
-    });
+    }
 
-    if(!errorYaCreado){
-        let $formularioerrores = document.querySelector("#errores");
-        let $error = document.createElement("p");
-        $error.innerText = textoError;
-        $formularioerrores.appendChild($error);
-        $error.className = llaveError;
-    }    
-}
+    function borrarError(key){
+        let $error = document.querySelector(`#errores .${key}`);
+        if($error){
+            $error.remove();
+        }
+    }
 
-/*
+    /*
     //Esto iba dentro de manejarErrores  
     //(Era LA SOLUCIÓN "MANUAL" , donde debiamos hardcodear cada error)
 
