@@ -63,7 +63,6 @@ function validarFormulario(event){
 }
 
 function manejarErrores(objetoErrores){
-    eliminarErrores();
     let contadorErrores = 0;
     const keys = Object.keys(objetoErrores);
 
@@ -72,14 +71,43 @@ function manejarErrores(objetoErrores){
 
         if(error){
             $formulario[key].className = "error";
-            agregarError(error);
-            contadorErrores ++;
+            agregarError(error,key);
+            contadorErrores ++;  
         } else{
             $formulario[key].className = "";
+
+            let $errores = document.querySelectorAll("form ul p");
+            $errores.forEach(function($error){
+                if($error.className === key){
+                    $error.remove();
+                }
+            });
+        }
+    });
+}
+
+function agregarError(textoError, llaveError){
+    let $errores = document.querySelectorAll("form ul p");
+    let errorYaCreado = false;
+    $errores.forEach(function($error){
+        if($error.textContent === textoError){
+            errorYaCreado = true;
         }
     });
 
-    /*//ESTO ES LA SOLUCIÓN "MANUAL" , donde debiamos hardcodear cada error
+    if(!errorYaCreado){
+        let $formularioerrores = document.querySelector("#errores");
+        let $error = document.createElement("p");
+        $error.innerText = textoError;
+        $formularioerrores.appendChild($error);
+        $error.className = llaveError;
+    }    
+}
+
+/*
+    //Esto iba dentro de manejarErrores  
+    //(Era LA SOLUCIÓN "MANUAL" , donde debiamos hardcodear cada error)
+
     errorNombre = objetoErrores.nombre;
     errorCiudad = objetoErrores.ciudad;
     errorDescripcionRegalo = objetoErrores.des;
@@ -102,20 +130,3 @@ function manejarErrores(objetoErrores){
         $formulario["descripcion-regalo"].className = "";
     }
     */
-}
-
-function agregarError(textoError){
-    let $formularioErrores = document.querySelector("#errores");
-    let $error = document.createElement("p");
-    $error.className = "errorFormulario";
-    $error.textContent = textoError;
-    $formularioErrores.appendChild($error);
-}
-
-function eliminarErrores(){
-    let $errores = document.querySelectorAll(".errorFormulario");
-
-    $errores.forEach(function($error){
-        $error.remove();
-    });
-}
