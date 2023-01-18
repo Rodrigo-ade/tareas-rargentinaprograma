@@ -1,5 +1,4 @@
 function validarNombre(nombre){
-
     if(nombre.length === 0){
         return 'El nombre debe tener al menos 1 caracter';
     }
@@ -76,7 +75,7 @@ function manejarErrores(objetoErrores){
 
     keys.forEach(function(key){
         const error = objetoErrores[key];
-
+        
         if(error){
             $formulario[key].className = "error";
             borrarError(key);
@@ -86,38 +85,37 @@ function manejarErrores(objetoErrores){
             $formulario[key].className = "";
             borrarError(key);
         }
+    })
 
-
-    });
     return contadorErrores;
 }
 
-    function agregarError(key, errorTexto){
-        let $errores = document.querySelectorAll("#errores p");
-        let errorExiste = false;
-        $errores.forEach(function($error){
-            if ($error.textContent === errorTexto){
-                errorExiste = true;
-            }
-        });
-
-        if(!errorExiste){
-            let $formularioError = document.querySelector("#errores");               
-            let $error = document.createElement("p");            
-            $error.textContent = errorTexto;
-            $error.className = key;
-            $formularioError.appendChild($error);
+function agregarError(key, errorTexto) {
+    let $errores = document.querySelectorAll("#errores p");
+    let errorExiste = false;
+    $errores.forEach(function ($error) {
+        if ($error.textContent === errorTexto) {
+            errorExiste = true;
         }
-    }
+    })
 
-    function borrarError(key){
-        let $error = document.querySelector(`#errores .${key}`);
-        if($error){
-            $error.remove();
-        }
+    if (!errorExiste) {
+        let $formularioError = document.querySelector("#errores");
+        let $error = document.createElement("p");
+        $error.textContent = errorTexto;
+        $error.className = key;
+        $formularioError.appendChild($error);
     }
+}
 
-    /*
+function borrarError(key) {
+    let $error = document.querySelector(`#errores .${key}`);
+    if ($error) {
+        $error.remove();
+    }
+}
+
+/*
     //Esto iba dentro de manejarErrores  
     //(Era LA SOLUCIÓN "MANUAL" , donde debiamos hardcodear cada error)
 
@@ -142,4 +140,4 @@ function manejarErrores(objetoErrores){
     } else{
         $formulario["descripcion-regalo"].className = "";
     }
-    */
+*/
