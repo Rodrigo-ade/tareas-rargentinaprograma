@@ -57,7 +57,15 @@ function validarFormulario(event){
         "descripcion-regalo": errorDescripcionRegalo
     };
 
-    manejarErrores(listaErrores);
+    const esExito = manejarErrores(listaErrores) === 0;
+    if(esExito){
+        $formulario.className = "oculto";
+        document.querySelector("#exito").className = "";
+
+        setTimeout(function(){
+            window.location.href = "wishlist.html";
+        },5000)
+    }
 
     event.preventDefault();
 }
@@ -81,6 +89,7 @@ function manejarErrores(objetoErrores){
 
 
     });
+    return contadorErrores;
 }
 
     function agregarError(key, errorTexto){
