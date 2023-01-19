@@ -24,12 +24,14 @@ function agregarIntegrante(){
 
     let inputIntegrante = document.createElement("input");
     inputIntegrante.type = "number";
-    inputIntegrante.className = "salario-integrante";
+    inputIntegrante.setAttribute ("name", "salario-integrante" );
+    inputIntegrante.id = `salario-integrante-${numeroIntegrante}`;
 
     let divIntegrante = document.createElement("div");
     divIntegrante.appendChild(etiquetaIntegrante);
     divIntegrante.appendChild(inputIntegrante);
     divIntegrante.id = `integrante-${numeroIntegrante}`;
+
 
     document.querySelector("#lista-familiares").appendChild(divIntegrante);
     numeroIntegrante ++;
