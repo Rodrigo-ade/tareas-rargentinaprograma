@@ -24,7 +24,7 @@ function agregarIntegrante(){
 
     let inputIntegrante = document.createElement("input");
     inputIntegrante.type = "number";
-    inputIntegrante.setAttribute ("name", "salario-integrante" );
+    inputIntegrante.className = "salario-integrante";
     inputIntegrante.id = `salario-integrante-${numeroIntegrante}`;
 
     let divIntegrante = document.createElement("div");
@@ -46,13 +46,20 @@ function eliminarIntegrante(){
     }
 }
 
-$botonCalcular.onclick = function(){
+$botonCalcular.onclick = validarFormulario;
+
+
+
+function validarFormulario(event){
+
+    //ESTO PASA SI ES EXITO
     document.querySelector("#lista-resultados").className = "";
     let salariosIntegrantes = obtenerSalariosIntegrantes();
     agregarResultadoSalario("mayor", obtenerSalarioMayor(salariosIntegrantes));
     agregarResultadoSalario("menor", obtenerSalarioMenor(salariosIntegrantes));
     agregarResultadoSalario("promedio-anual", obtenerPromedioAnual(salariosIntegrantes));
     agregarResultadoSalario("promedio-mensual", obtenerPromedioMensual(salariosIntegrantes));
+    event.preventDefault();
 }
 
 function obtenerSalariosIntegrantes(){
