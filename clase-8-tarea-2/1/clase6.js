@@ -80,10 +80,18 @@ let $botonEnviar = document.querySelector("#boton-cantidad-familiares");
 let $botonCalcular = document.querySelector("#boton-calcular");
 let $botonRecomenzar = document.querySelector("#empezar-nuevamente");
 
-$botonEnviar.onclick = function(){
-    if(Number(document.querySelector("#cantidad-familiares").value) === 0){
-        alert("Para continuar debes ingresar más de 1 familiar");
-    }else{
+$botonEnviar.onclick = validarFormulario;
+
+function validarFormulario(event){
+    let cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
+    let errorCantidadFamiliares = validarCantidadFamiliares(cantidadFamiliares);
+
+    let errores = {
+        "cantidad-familiares": errorCantidadFamiliares
+    }
+    
+    let esExito = manejarErrores(errores) === 0;
+    if(esExito){
         if(familiaresExisten()){
             borrarFamiliares();
             crearFamiliares();
@@ -93,6 +101,43 @@ $botonEnviar.onclick = function(){
         }
         $botonCalcular.className = "";
     }
+    event.preventDefault();
+}
+
+function manejarErrores(listaErrores){
+    let cantidadErrores = 0;
+    let keys = Object.keys(listaErrores);
+    keys.forEach(function(key){
+        let errorTexto = listaErrores[key];
+        
+        if(errorTexto){
+            cantidadErrores ++;
+            formulario[key].className = "error";
+            document.querySelector("#errores-cantidad-familiares").className = "";
+
+            if(document.querySelectorAll("#errores-cantidad-familiares li").length === 0){
+                let $error = document.createElement("li");
+                $error.textContent = errorTexto;
+                document.querySelector("#errores-cantidad-familiares").appendChild($error);
+            }else{
+                document.querySelector("#errores-cantidad-familiares li").remove();
+
+                let $error = document.createElement("li");
+                $error.textContent = errorTexto;
+                document.querySelector("#errores-cantidad-familiares").appendChild($error);
+            }
+            
+        }else{
+            document.querySelectorAll("#errores-cantidad-familiares li").forEach(function($error){
+                $error.remove();
+            });
+            
+            document.querySelector("#errores-cantidad-familiares").className = "oculto";
+            formulario[key].className = "";
+        }
+    });
+
+    return cantidadErrores;
 }
 
 $botonCalcular.onclick = function(){
@@ -106,13 +151,13 @@ $botonCalcular.onclick = function(){
 }
 
 $botonRecomenzar.onclick = limpiarFormulario;
-
-
 function limpiarFormulario(){
     document.querySelector("#cantidad-familiares").value = "";    
     borrarFamiliares();
     $botonCalcular.className = "oculto";
     document.querySelector("#resultados-edades").className = "oculto";
+    document.querySelector("#errores-cantidad-familiares").className = "oculto";
+    formulario["cantidad-familiares"].className = "";
 }
 
 function borrarFamiliares(){
