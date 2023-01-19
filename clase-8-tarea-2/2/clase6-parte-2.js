@@ -32,7 +32,6 @@ function agregarIntegrante(){
     divIntegrante.appendChild(inputIntegrante);
     divIntegrante.id = `integrante-${numeroIntegrante}`;
 
-
     document.querySelector("#lista-familiares").appendChild(divIntegrante);
     numeroIntegrante ++;
 }
@@ -47,19 +46,43 @@ function eliminarIntegrante(){
 }
 
 $botonCalcular.onclick = validarFormulario;
-
-
-
 function validarFormulario(event){
+    let listaErrores = {};
+    let $listaSalarios = document.querySelectorAll(".salario-integrante");
+    $listaSalarios.forEach(function($salario){
+        let nombre = $salario.id;
+        let error = validarSalarioAnual(Number($salario.value));
+        listaErrores[`${nombre}`] = error;
+    });
 
-    //ESTO PASA SI ES EXITO
-    document.querySelector("#lista-resultados").className = "";
-    let salariosIntegrantes = obtenerSalariosIntegrantes();
-    agregarResultadoSalario("mayor", obtenerSalarioMayor(salariosIntegrantes));
-    agregarResultadoSalario("menor", obtenerSalarioMenor(salariosIntegrantes));
-    agregarResultadoSalario("promedio-anual", obtenerPromedioAnual(salariosIntegrantes));
-    agregarResultadoSalario("promedio-mensual", obtenerPromedioMensual(salariosIntegrantes));
-    event.preventDefault();
+    let esExito = manejarErrores(listaErrores) === 0;
+    if(esExito){
+        document.querySelector("#lista-resultados").className = "";
+        let salariosIntegrantes = obtenerSalariosIntegrantes();
+        agregarResultadoSalario("mayor", obtenerSalarioMayor(salariosIntegrantes));
+        agregarResultadoSalario("menor", obtenerSalarioMenor(salariosIntegrantes));
+        agregarResultadoSalario("promedio-anual", obtenerPromedioAnual(salariosIntegrantes));
+        agregarResultadoSalario("promedio-mensual", obtenerPromedioMensual(salariosIntegrantes));
+        event.preventDefault();
+    } else{
+        document.querySelector("#lista-resultados").className = "oculto";
+    }
+}
+
+function manejarErrores(listaErrores){
+    let cantidadErrores = 0;
+    let keys = Object.keys(listaErrores);
+    keys.forEach(function(key){
+        let errorTexto = listaErrores[key];
+        
+        if(errorTexto){
+            cantidadErrores ++;
+            document.querySelector(`#${key}`).classList.add ("error");     
+        }else{
+            document.querySelector(`#${key}`).classList.remove ("error");    
+        }
+    });
+    return cantidadErrores;
 }
 
 function obtenerSalariosIntegrantes(){
