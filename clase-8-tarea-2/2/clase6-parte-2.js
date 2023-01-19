@@ -1,10 +1,3 @@
-function ocultarElemento(elemento){
-    elemento.style.visibility = "hidden";
-}
-
-function desocultarElemento(elemento){
-    elemento.style.visibility = "visible";
-}
 
 let $botonAgregar = document.querySelector("#agregar");
 let $botonQuitar = document.querySelector("#quitar");
@@ -12,15 +5,15 @@ let $botonCalcular = document.querySelector("#calcular");
 
 $botonAgregar.onclick = function(){
     agregarIntegrante();
-    desocultarElemento($botonCalcular);
-
+    $botonCalcular.className = "";
 }
 
 $botonQuitar.onclick = function(){
-    eliminarIntegrante();
-    if(numeroIntegrante === 0){
-        ocultarElemento($botonCalcular);
+    document.querySelector("#lista-resultados").className = "oculto";
+    if(numeroIntegrante === 1){
+        $botonCalcular.className = "oculto";
     }
+    eliminarIntegrante();
 }
 
 let numeroIntegrante = 0;
@@ -52,7 +45,7 @@ function eliminarIntegrante(){
 }
 
 $botonCalcular.onclick = function(){
-    desocultarElemento(document.querySelector("#lista-resultados"));
+    document.querySelector("#lista-resultados").className = "";
     let salariosIntegrantes = obtenerSalariosIntegrantes();
     agregarResultadoSalario("mayor", obtenerSalarioMayor(salariosIntegrantes));
     agregarResultadoSalario("menor", obtenerSalarioMenor(salariosIntegrantes));

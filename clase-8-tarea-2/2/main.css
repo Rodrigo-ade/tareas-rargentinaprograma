@@ -1,6 +1,3 @@
-#lista-resultados{
-    visibility: hidden;
-}
-#calcular{
-    visibility: hidden;
+.oculto{
+    display: none;
 }
