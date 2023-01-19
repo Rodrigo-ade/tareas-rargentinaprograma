@@ -10,6 +10,7 @@ function crearFamiliares(){
         let inputFamiliar = document.createElement("input");
         inputFamiliar.type = "number";
         inputFamiliar.className = "edad-familiar";
+        inputFamiliar.name = `edad-familiar-${i}`;
 
         let divisorFamiliar = document.createElement("div");
         divisorFamiliar.className = "divisor-familiar";
@@ -17,16 +18,6 @@ function crearFamiliares(){
         divisorFamiliar.appendChild(inputFamiliar);
         $formularioEdades.appendChild(divisorFamiliar);
     }
-}
-
-function obtenerEdades(){
-    let edadesFamilia = document.querySelectorAll(".edad-familiar");
-    let edades = [];
-    for(let i = 0; i<edadesFamilia.length; i++){
-        edades.push(Number(edadesFamilia[i].value));
-    }
-
-    return edades;
 }
 
 function obtenerMayorEdad(arrayEdades){
@@ -140,14 +131,51 @@ function manejarErrores(listaErrores){
     return cantidadErrores;
 }
 
-$botonCalcular.onclick = function(){
-    let edadesFamiliares = obtenerEdades();
+$botonCalcular.onclick = validarFormulario2;
 
-    actualizarResultadoEdad("mayor", obtenerMayorEdad(edadesFamiliares) );
-    actualizarResultadoEdad("menor", obtenerMenorEdad(edadesFamiliares) );
-    actualizarResultadoEdad("promedio", obtenerPromedioEdad(edadesFamiliares) );
+function validarFormulario2(event){
+    let $camposEdades = document.querySelectorAll(".edad-familiar");
+    let listaErrores2 = {};
+    let edadesFamiliares = [];
 
-    document.querySelector("#resultados-edades").className = "";
+    $camposEdades.forEach(function(campoEdad){
+        let campoNombre = campoEdad.name;
+        let edad = Number(campoEdad.value);
+        let errorCampo = validarEdadFamiliar(edad);
+        edadesFamiliares.push(edad);
+
+        listaErrores2[`${campoNombre}`] = errorCampo;
+    });
+
+
+    let esExito2 = manejarErrores2(listaErrores2) === 0;
+    if(esExito2){
+        actualizarResultadoEdad("mayor", obtenerMayorEdad(edadesFamiliares) );
+        actualizarResultadoEdad("menor", obtenerMenorEdad(edadesFamiliares) );
+        actualizarResultadoEdad("promedio", obtenerPromedioEdad(edadesFamiliares) );
+    
+        document.querySelector("#resultados-edades").className = "";
+    }else{
+        document.querySelector("#resultados-edades").className = "oculto";
+    }
+    
+    event.preventDefault();
+}
+
+function manejarErrores2(listaErrores){
+    let cantidadErrores = 0;
+    let keys = Object.keys(listaErrores);
+    keys.forEach(function(key){
+        let errorTexto = listaErrores[key];
+        
+        if(errorTexto){
+            cantidadErrores ++;
+            formulario[key].id = "error";     
+        }else{
+            formulario[key].id = "";
+        }
+    });
+    return cantidadErrores;
 }
 
 $botonRecomenzar.onclick = limpiarFormulario;
