@@ -1,11 +1,3 @@
-function desocultarElemento(elemento){
-    elemento.style.visibility = "visible";
-}
-
-function ocultarElemento(elemento){
-    elemento.style.visibility = "hidden";
-}
-
 function crearFamiliares(){
     let $formularioEdades = document.querySelector("#edades-familiares");
     let cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
@@ -99,7 +91,7 @@ $botonEnviar.onclick = function(){
         else{
             crearFamiliares();
         }
-        desocultarElemento($botonCalcular);
+        $botonCalcular.className = "";
     }
 }
 
@@ -110,7 +102,7 @@ $botonCalcular.onclick = function(){
     actualizarResultadoEdad("menor", obtenerMenorEdad(edadesFamiliares) );
     actualizarResultadoEdad("promedio", obtenerPromedioEdad(edadesFamiliares) );
 
-    desocultarElemento(document.querySelector("#resultados-edades"));
+    document.querySelector("#resultados-edades").className = "";
 }
 
 $botonRecomenzar.onclick = limpiarFormulario;
@@ -119,8 +111,8 @@ $botonRecomenzar.onclick = limpiarFormulario;
 function limpiarFormulario(){
     document.querySelector("#cantidad-familiares").value = "";    
     borrarFamiliares();
-    ocultarElemento($botonCalcular);
-    ocultarElemento(document.querySelector("#resultados-edades"));
+    $botonCalcular.className = "oculto";
+    document.querySelector("#resultados-edades").className = "oculto";
 }
 
 function borrarFamiliares(){
