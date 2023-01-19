@@ -13,6 +13,8 @@
     <form>
         <label for="cantidad-familiares">Ingresa la cantidad de familiares:</label>
         <input type="number"id="cantidad-familiares">
+        <ul class="oculto" id="errores-cantidad-familiares"></ul>
+
         <button type="button" id="boton-cantidad-familiares">Enviar</button>
         <button type="button" id="empezar-nuevamente">Empezar de 0</button>
 
@@ -20,6 +22,7 @@
         </div>
         <div>
             <button type="button" id="boton-calcular">Calcular</button>
+            <ul class="oculto" id="errores-edades-familiares"></ul>
         </div>
         <div id="resultados-edades">
             <p>La mayor edad es: <strong id="mayor-edad"></strong></p>

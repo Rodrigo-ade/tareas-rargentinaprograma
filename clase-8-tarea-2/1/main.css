@@ -16,3 +16,11 @@
     color: blue;
     font-size: 20px;
 }
+
+.oculto{
+    display: none;
+}
+
+.error{
+    border-color: red;
+}
