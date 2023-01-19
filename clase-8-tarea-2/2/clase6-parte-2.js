@@ -10,6 +10,7 @@ $botonAgregar.onclick = function(){
 
 $botonQuitar.onclick = function(){
     document.querySelector("#lista-resultados").className = "oculto";
+    document.querySelector("#error-salarial").className = "oculto";
     if(numeroIntegrante === 1){
         $botonCalcular.className = "oculto";
     }
@@ -82,6 +83,13 @@ function manejarErrores(listaErrores){
             document.querySelector(`#${key}`).classList.remove ("error");    
         }
     });
+
+    if(cantidadErrores > 0){
+        document.querySelector("#error-salarial").className = "error";
+    }else{
+        document.querySelector("#error-salarial").className = "oculto";
+    }
+
     return cantidadErrores;
 }
 

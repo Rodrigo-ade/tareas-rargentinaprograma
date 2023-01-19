@@ -5,3 +5,9 @@
 .error{
     border-color: red;
 }
+
+#error-salarial{
+    font-size: 18px;
+    border-color: red;
+    border-style: solid;
+}   
