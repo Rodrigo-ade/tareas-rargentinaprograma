@@ -20,52 +20,42 @@ function crearFamiliares(){
     }
 }
 
-function obtenerMayorEdad(arrayEdades){
+function obtenerMayorEdad(edades){
     let mayorEdad = -Infinity;
 
-    for(let i = 0; i<arrayEdades.length; i++){
-        if(mayorEdad < arrayEdades[i]){
-            mayorEdad = arrayEdades[i];
+    for(let i = 0; i<edades.length; i++){
+        if(mayorEdad < edades[i]){
+            mayorEdad = edades[i];
         }
     }
 
     return mayorEdad;
 }
 
-function obtenerMenorEdad(arrayEdades){
+function obtenerMenorEdad(edades){
     let menorEdad = Infinity;
 
-    for(let i = 0; i<arrayEdades.length; i++){
-        if(menorEdad > arrayEdades[i]){
-            menorEdad = arrayEdades[i];
+    for(let i = 0; i<edades.length; i++){
+        if(menorEdad > edades[i]){
+            menorEdad = edades[i];
         }
     }
 
     return menorEdad;
 }
 
-function obtenerPromedioEdad(arrayEdades){
+function obtenerPromedioEdad(edades){
     let sumaEdades = 0;
-    for(let i = 0; i<arrayEdades.length; i++){
-        sumaEdades += arrayEdades[i];
+    for(let i = 0; i<edades.length; i++){
+        sumaEdades += edades[i];
     }
 
-    return sumaEdades / arrayEdades.length;
+    return sumaEdades / edades.length;
 }
 
 function actualizarResultadoEdad(tipoEdad, edad){
     document.querySelector(`#${tipoEdad}-edad`).textContent = edad;
 }
-
-function familiaresExisten(){
-    let familiaresExisten = false;
-    if(document.querySelectorAll("#edades-familiares .divisor-familiar").length > 0){
-        familiaresExisten = true;
-    }
-
-    return familiaresExisten;
-}
-
 
 let $botonEnviar = document.querySelector("#boton-cantidad-familiares");
 let $botonCalcular = document.querySelector("#boton-calcular");
@@ -74,6 +64,7 @@ let $botonRecomenzar = document.querySelector("#empezar-nuevamente");
 $botonEnviar.onclick = validarFormulario;
 
 function validarFormulario(event){
+    event.preventDefault();
     let cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
     let errorCantidadFamiliares = validarCantidadFamiliares(cantidadFamiliares);
 
@@ -83,7 +74,7 @@ function validarFormulario(event){
     
     let esExito = manejarErrores(errores) === 0;
     if(esExito){
-        if(familiaresExisten()){
+        if(document.querySelectorAll(".divisor-familiar").length > 0){
             borrarFamiliares();
             crearFamiliares();
         }
@@ -92,7 +83,6 @@ function validarFormulario(event){
         }
         $botonCalcular.className = "";
     }
-    event.preventDefault();
 }
 
 function manejarErrores(listaErrores){
