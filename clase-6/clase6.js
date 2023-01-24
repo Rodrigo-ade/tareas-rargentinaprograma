@@ -5,7 +5,7 @@ function desocultarElemento(elemento){
 function ocultarElemento(elemento){
     elemento.style.visibility = "hidden";
 }
-//Texto de prueba para ver si se actualiza el pull request en tiempo real
+
 function crearFamiliares(){
     let $formularioEdades = document.querySelector("#edades-familiares");
     let cantidadFamiliares = Number(document.querySelector("#cantidad-familiares").value);
