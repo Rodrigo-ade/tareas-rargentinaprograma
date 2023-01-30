@@ -1,0 +1,13 @@
+.oculto{
+    display: none;
+}
+
+.error{
+    border-color: red;
+}
+
+#error-salarial{
+    font-size: 18px;
+    border-color: rgb(252, 103, 103);
+    border-style: solid;
+}   

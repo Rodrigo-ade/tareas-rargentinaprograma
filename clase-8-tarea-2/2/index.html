@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Clase 6 parte 2</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+</head>
+<body>
+    <h1>Calculador salarios familiares</h1>
+    <div>
+        <p>Haga click en "Agregar" para añadir familiares</p>
+        <p>Haga click en "Quitar" para quitar familiares</p>
+        <button type="button" id="agregar">Agregar</button>
+        <button type="button" id="quitar">Quitar</button>
+    </div>
+    <form>
+        <div id="lista-familiares"></div>
+        
+        <div>
+            <button type="button" id="calcular" class="oculto">Calcular</button>
+        </div>
+
+        <strong class="oculto" id="error-salarial">Debes añadir un salario entre $1 como mínimo y $120000 como máximo</strong>
+
+        <div id="lista-resultados" class="oculto">
+            <p>El mayor salario es: <strong id="mayor-salario"></strong></p>
+            <p>El menor salario es: <strong id="menor-salario"></strong></p>
+            <p>El salario anual promedio es: <strong id="promedio-anual-salario"></strong></p>
+            <p>El salario mensual promedio es: <strong id="promedio-mensual-salario"></strong></p>
+        </div>
+    </form>
+    <script src='clase6-parte-2.js'></script>
+    <script src='validaciones.js'></script>
+    <script src='pruebas.js'></script>
+</body>
+</html>

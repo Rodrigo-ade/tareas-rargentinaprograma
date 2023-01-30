@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Tarea clase 6</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    
+</head>
+<body>
+    <h1>Grupo familiar</h1>
+    <form name="formulario">
+        <label for="cantidad-familiares">Ingresa la cantidad de familiares:</label>
+        <input type="number"id="cantidad-familiares" name="cantidad-familiares">
+        <button type="button" id="boton-cantidad-familiares">Enviar</button>
+        <button type="button" id="empezar-nuevamente">Empezar de 0</button>
+
+        <ul name="errores-cantidad-familiares" class="oculto" id="errores-cantidad-familiares"></ul>
+
+        <div id="edades-familiares">
+        </div>
+        <ul name="errores-edades-familiares" class="oculto" id="errores-edades-familiares"></ul>
+        <button type="button" id="boton-calcular" class="oculto">Calcular</button>
+        <div id="resultados-edades" class="oculto">
+            <p>La mayor edad es: <strong id="mayor-edad"></strong></p>
+            <p>La menor edad es: <strong id="menor-edad"></strong></p>
+            <p>El promedio de edad es: <strong id="promedio-edad"></strong></p>
+        </div>
+    </form>
+    
+    <script src='clase6.js'></script>
+    <script src='validaciones.js'></script>
+    <script src='pruebas.js'></script>
+</body>
+</html>
