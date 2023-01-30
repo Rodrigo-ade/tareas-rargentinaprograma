@@ -124,6 +124,8 @@ function manejarErrores(listaErrores){
 $botonCalcular.onclick = validarFormulario2;
 
 function validarFormulario2(event){
+    event.preventDefault();
+    
     let $camposEdades = document.querySelectorAll(".edad-familiar");
     let listaErrores2 = {};
     let edadesFamiliares = [];
@@ -148,8 +150,6 @@ function validarFormulario2(event){
     }else{
         document.querySelector("#resultados-edades").className = "oculto";
     }
-    
-    event.preventDefault();
 }
 
 function manejarErrores2(listaErrores){
