@@ -5,14 +5,14 @@ let $botonCalcular = document.querySelector("#calcular");
 
 $botonAgregar.onclick = function(){
     agregarIntegrante();
-    $botonCalcular.className = "";
+    $botonCalcular.classList.remove("oculto");
 }
 
 $botonQuitar.onclick = function(){
     document.querySelector("#lista-resultados").className = "oculto";
-    document.querySelector("#error-salarial").className = "oculto";
+    //document.querySelector("#error-salarial").className = "oculto";
     if(numeroIntegrante === 1){
-        $botonCalcular.className = "oculto";
+        $botonCalcular.classList.add("oculto");
     }
     eliminarIntegrante();
 }
