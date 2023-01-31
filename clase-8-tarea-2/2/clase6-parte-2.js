@@ -125,6 +125,7 @@ function obtenerSalarioMenor(arraySalarios){
             salarioMenor = arraySalarios[i];
         }
     }
+
     return salarioMenor;
 }
 
@@ -133,7 +134,8 @@ function obtenerPromedioAnual(arraySalarios){
     for(let i = 0; i<arraySalarios.length; i++){
         sumaSalarios += arraySalarios[i];
     }
-    return sumaSalarios / arraySalarios.length;
+
+    return (sumaSalarios / arraySalarios.length).toFixed(2);
 }
 
 function obtenerPromedioMensual(arraySalarios){
@@ -142,5 +144,5 @@ function obtenerPromedioMensual(arraySalarios){
     for(let i = 0; i<arraySalarios.length; i++){
         sumaSalarios += arraySalarios[i];
     }
-    return sumaSalarios / (MESES_POR_ANIO * arraySalarios.length);
+    return (sumaSalarios / (MESES_POR_ANIO * arraySalarios.length)).toFixed(2);
 }
