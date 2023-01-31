@@ -11,7 +11,7 @@
             href="../../node_modules/bootstrap/dist/css/bootstrap.min.css"
         />
     </head>
-    <body>
+    <body class="bg-secondary">
         <div class="container text-center">
             <h1>Grupo Familiar</h1>
         </div>
@@ -19,52 +19,35 @@
         <form name="formulario">
             <div class="row justify-content-center text-center">
                 <div class="col-sm-3">
-                    <label for="cantidad-familiares"
-                        >Ingresa la cantidad de familiares:</label
-                    >
+                    <label for="cantidad-familiares">Ingresa la cantidad de familiares:</label>
                 </div>
                 <div class="col-sm-2">
-                    <input
-                        type="number"
-                        id="cantidad-familiares"
-                        name="cantidad-familiares"
-                    />
+                    <input type="number" id="cantidad-familiares" name="cantidad-familiares"/>
                 </div>
                 <div class="col-sm-1">
-                    <button type="button" id="boton-cantidad-familiares">
-                        Enviar
-                    </button>
+                    <button type="button" id="boton-cantidad-familiares" class="btn btn-warning">Enviar</button>
                 </div>
                 <div class="col-sm-1">
-                    <button type="button" id="empezar-nuevamente">
-                        Recomenzar
-                    </button>
+                    <button type="button" id="empezar-nuevamente" class="btn btn-warning">Recomenzar</button>
                 </div>
             </div>
 
             <div class="row justify-content-center text-center">
                 <div class="col-sm-8">
-                    <p
-                        name="errores-cantidad-familiares"
-                        class="oculto"
-                        id="errores-cantidad-familiares"
-                    ></p>
+                    <p name="errores-cantidad-familiares" class="oculto" id="errores-cantidad-familiares"></p>
                 </div>
             </div>
 
-            <div
-                class="row justify-content-center text-center"
-                id="familiares-creados"
-            >
-                <div id="edades-familiares" class="col-sm-8"></div>
+            <div class="row justify-content-center text-center" id="familiares-creados">
+                <div id="edades-familiares" class="col-sm-8">
+
+                </div>
             </div>
 
             <div class="row justify-content-center text-center">
                 <div class="col-sm-6"></div>
                 <div class="col-sm-2">
-                    <button type="button" id="boton-calcular" class="oculto">
-                        Calcular
-                    </button>
+                    <button type="button" id="boton-calcular" class="oculto">Calcular</button>
                 </div>
             </div>
 
