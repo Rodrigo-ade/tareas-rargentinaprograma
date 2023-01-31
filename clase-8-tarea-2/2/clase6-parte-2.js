@@ -21,6 +21,7 @@ let numeroIntegrante = 0;
 function agregarIntegrante(){
     let etiquetaIntegrante = document.createElement("label");
     let textoEtiquetaIntegrante = document.createTextNode(`Ingresa el salario anual del ${numeroIntegrante + 1}º integrante: `);
+    etiquetaIntegrante.classList.add("fs-5");
     etiquetaIntegrante.appendChild(textoEtiquetaIntegrante);
 
     let inputIntegrante = document.createElement("input");
@@ -32,6 +33,7 @@ function agregarIntegrante(){
     divIntegrante.appendChild(etiquetaIntegrante);
     divIntegrante.appendChild(inputIntegrante);
     divIntegrante.id = `integrante-${numeroIntegrante}`;
+    divIntegrante.classList.add("valores-integrante");
 
     document.querySelector("#lista-familiares").appendChild(divIntegrante);
     numeroIntegrante ++;
