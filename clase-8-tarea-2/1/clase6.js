@@ -50,7 +50,9 @@ function obtenerPromedioEdad(edades){
         sumaEdades += edades[i];
     }
 
-    return sumaEdades / edades.length;
+    let promedioEdades = (sumaEdades / edades.length).toFixed(2);
+
+    return promedioEdades;
 }
 
 function actualizarResultadoEdad(tipoEdad, edad){
@@ -81,7 +83,7 @@ function validarFormulario(event){
         else{
             crearFamiliares();
         }
-        $botonCalcular.className = "";
+        $botonCalcular.classList.remove("oculto");
     }
 }
 
@@ -172,7 +174,7 @@ $botonRecomenzar.onclick = limpiarFormulario;
 function limpiarFormulario(){
     document.querySelector("#cantidad-familiares").value = "";    
     borrarFamiliares();
-    $botonCalcular.className = "oculto";
+    $botonCalcular.classList.add("oculto");
     document.querySelector("#resultados-edades").className = "oculto";
     document.querySelector("#errores-cantidad-familiares").className = "oculto";
     formulario["cantidad-familiares"].className = "";
