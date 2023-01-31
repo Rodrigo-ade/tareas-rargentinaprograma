@@ -9,28 +9,69 @@
     <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Grupo familiar</h1>
+    <div class="container text-center">
+        <h1>Grupo Familiar</h1>
+    </div>
+ 
     <form name="formulario">
-        <label for="cantidad-familiares">Ingresa la cantidad de familiares:</label>
-        <input type="number"id="cantidad-familiares" name="cantidad-familiares">
-        <button type="button" id="boton-cantidad-familiares">Enviar</button>
-        <button type="button" id="empezar-nuevamente">Empezar de 0</button>
-
-        <ul name="errores-cantidad-familiares" class="oculto" id="errores-cantidad-familiares"></ul>
-
-        <div id="edades-familiares">
+        <div class="row justify-content-center text-center">
+            <div class="col-sm-3">
+                <label for="cantidad-familiares">Ingresa la cantidad de familiares:</label>
+            </div>
+            <div class="col-sm-2">
+                <input type="number"id="cantidad-familiares" name="cantidad-familiares">
+            </div>
+            <div class="col-sm-1">
+                <button type="button" id="boton-cantidad-familiares">Enviar</button>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" id="empezar-nuevamente">Recomenzar</button>
+            </div>
         </div>
-        <ul name="errores-edades-familiares" class="oculto" id="errores-edades-familiares"></ul>
-        <button type="button" id="boton-calcular" class="oculto">Calcular</button>
-        <div id="resultados-edades" class="oculto">
-            <p>La mayor edad es: <strong id="mayor-edad"></strong></p>
-            <p>La menor edad es: <strong id="menor-edad"></strong></p>
-            <p>El promedio de edad es: <strong id="promedio-edad"></strong></p>
+
+        <div class="row justify-content-center text-center">
+            <div class="col-sm-8">
+                <p name="errores-cantidad-familiares" class="oculto" id="errores-cantidad-familiares"></p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center" id="familiares-creados">
+            <div id="edades-familiares" class="col-sm-8">
+
+            </div>
+        </div>
+
+        <div class="row justify-content-center text-center">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-2">
+                <button type="button" id="boton-calcular" class="oculto">Calcular</button>
+            </div>
+        </div>
+
+        <div class="oculto" id="resultados-edades">
+            <div class="row justify-content-center text-center">
+                <div class="col-sm-8">
+                    <p>La mayor edad es: <strong id="mayor-edad"></strong></p>
+                </div>
+            </div>
+            <div class="row justify-content-center text-center">
+                <div class="col-sm-8">
+                    <p>La menor edad es: <strong id="menor-edad"></strong></p>
+                </div>
+            </div>
+            <div class="row justify-content-center text-center">
+                <div class="col-sm-8">
+                    <p>El promedio de edad es: <strong id="promedio-edad"></strong></p>
+                </div>
+            </div>
         </div>
     </form>
     
+
     <script src='clase6.js'></script>
     <script src='validaciones.js'></script>
     <script src='pruebas.js'></script>
 </body>
+
 </html>

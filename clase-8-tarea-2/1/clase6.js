@@ -96,20 +96,20 @@ function manejarErrores(listaErrores){
             formulario[key].className = "error";
             document.querySelector("#errores-cantidad-familiares").className = "";
 
-            if(document.querySelectorAll("#errores-cantidad-familiares li").length === 0){
-                let $error = document.createElement("li");
+            if(document.querySelectorAll("#errores-cantidad-familiares p").length === 0){
+                let $error = document.createElement("p");
                 $error.textContent = errorTexto;
                 document.querySelector("#errores-cantidad-familiares").appendChild($error);
             }else{
-                document.querySelector("#errores-cantidad-familiares li").remove();
+                document.querySelector("#errores-cantidad-familiares p").remove();
 
-                let $error = document.createElement("li");
+                let $error = document.createElement("p");
                 $error.textContent = errorTexto;
                 document.querySelector("#errores-cantidad-familiares").appendChild($error);
             }
             
         }else{
-            document.querySelectorAll("#errores-cantidad-familiares li").forEach(function($error){
+            document.querySelectorAll("#errores-cantidad-familiares p").forEach(function($error){
                 $error.remove();
             });
             
