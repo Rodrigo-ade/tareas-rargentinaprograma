@@ -5,14 +5,14 @@ let $botonCalcular = document.querySelector("#calcular");
 
 $botonAgregar.onclick = function(){
     agregarIntegrante();
-    $botonCalcular.className = "";
+    $botonCalcular.classList.remove("oculto");
 }
 
 $botonQuitar.onclick = function(){
     document.querySelector("#lista-resultados").className = "oculto";
-    document.querySelector("#error-salarial").className = "oculto";
+    //document.querySelector("#error-salarial").className = "oculto";
     if(numeroIntegrante === 1){
-        $botonCalcular.className = "oculto";
+        $botonCalcular.classList.add("oculto");
     }
     eliminarIntegrante();
 }
@@ -21,6 +21,7 @@ let numeroIntegrante = 0;
 function agregarIntegrante(){
     let etiquetaIntegrante = document.createElement("label");
     let textoEtiquetaIntegrante = document.createTextNode(`Ingresa el salario anual del ${numeroIntegrante + 1}º integrante: `);
+    etiquetaIntegrante.classList.add("fs-5");
     etiquetaIntegrante.appendChild(textoEtiquetaIntegrante);
 
     let inputIntegrante = document.createElement("input");
@@ -32,6 +33,7 @@ function agregarIntegrante(){
     divIntegrante.appendChild(etiquetaIntegrante);
     divIntegrante.appendChild(inputIntegrante);
     divIntegrante.id = `integrante-${numeroIntegrante}`;
+    divIntegrante.classList.add("valores-integrante");
 
     document.querySelector("#lista-familiares").appendChild(divIntegrante);
     numeroIntegrante ++;
@@ -123,6 +125,7 @@ function obtenerSalarioMenor(arraySalarios){
             salarioMenor = arraySalarios[i];
         }
     }
+
     return salarioMenor;
 }
 
@@ -131,7 +134,8 @@ function obtenerPromedioAnual(arraySalarios){
     for(let i = 0; i<arraySalarios.length; i++){
         sumaSalarios += arraySalarios[i];
     }
-    return sumaSalarios / arraySalarios.length;
+
+    return (sumaSalarios / arraySalarios.length).toFixed(2);
 }
 
 function obtenerPromedioMensual(arraySalarios){
@@ -140,5 +144,5 @@ function obtenerPromedioMensual(arraySalarios){
     for(let i = 0; i<arraySalarios.length; i++){
         sumaSalarios += arraySalarios[i];
     }
-    return sumaSalarios / (MESES_POR_ANIO * arraySalarios.length);
+    return (sumaSalarios / (MESES_POR_ANIO * arraySalarios.length)).toFixed(2);
 }

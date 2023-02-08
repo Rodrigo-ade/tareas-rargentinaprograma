@@ -1,5 +1,5 @@
 .oculto{
-    display: none;
+    display: none !important;
 }
 
 .error{
@@ -9,5 +9,17 @@
 #error-salarial{
     font-size: 18px;
     border-color: rgb(252, 103, 103);
-    border-style: solid;
+    border: 3px;
 }   
+
+#contenedor-error{
+    margin: 10px;
+}
+
+.valores-integrante{
+    margin: 5px;
+}
+
+body{
+    background-color: rgb(176, 176, 176) !important;
+}

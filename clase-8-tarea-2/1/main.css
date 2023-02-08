@@ -16,10 +16,14 @@
 }
 
 .oculto{
-    display: none;
+    display: none !important;
 }
 
 
 #error{
     border-color: red;
+}
+
+#errores-cantidad-familiares{
+    color: red;
 }

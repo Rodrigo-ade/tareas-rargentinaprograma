@@ -50,7 +50,9 @@ function obtenerPromedioEdad(edades){
         sumaEdades += edades[i];
     }
 
-    return sumaEdades / edades.length;
+    let promedioEdades = (sumaEdades / edades.length).toFixed(2);
+
+    return promedioEdades;
 }
 
 function actualizarResultadoEdad(tipoEdad, edad){
@@ -81,7 +83,7 @@ function validarFormulario(event){
         else{
             crearFamiliares();
         }
-        $botonCalcular.className = "";
+        $botonCalcular.classList.remove("oculto");
     }
 }
 
@@ -96,20 +98,20 @@ function manejarErrores(listaErrores){
             formulario[key].className = "error";
             document.querySelector("#errores-cantidad-familiares").className = "";
 
-            if(document.querySelectorAll("#errores-cantidad-familiares li").length === 0){
-                let $error = document.createElement("li");
+            if(document.querySelectorAll("#errores-cantidad-familiares p").length === 0){
+                let $error = document.createElement("p");
                 $error.textContent = errorTexto;
                 document.querySelector("#errores-cantidad-familiares").appendChild($error);
             }else{
-                document.querySelector("#errores-cantidad-familiares li").remove();
+                document.querySelector("#errores-cantidad-familiares p").remove();
 
-                let $error = document.createElement("li");
+                let $error = document.createElement("p");
                 $error.textContent = errorTexto;
                 document.querySelector("#errores-cantidad-familiares").appendChild($error);
             }
             
         }else{
-            document.querySelectorAll("#errores-cantidad-familiares li").forEach(function($error){
+            document.querySelectorAll("#errores-cantidad-familiares p").forEach(function($error){
                 $error.remove();
             });
             
@@ -172,7 +174,7 @@ $botonRecomenzar.onclick = limpiarFormulario;
 function limpiarFormulario(){
     document.querySelector("#cantidad-familiares").value = "";    
     borrarFamiliares();
-    $botonCalcular.className = "oculto";
+    $botonCalcular.classList.add("oculto");
     document.querySelector("#resultados-edades").className = "oculto";
     document.querySelector("#errores-cantidad-familiares").className = "oculto";
     formulario["cantidad-familiares"].className = "";
