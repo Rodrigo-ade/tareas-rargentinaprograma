@@ -4,7 +4,10 @@
   "description": "agrega bootstrap",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "servidor-abrir": "http-server",
+    "cypress-abrir": "cypress open",
+    "cypress-terminal-abrir": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -18,5 +21,8 @@
   "homepage": "https://github.com/Rodrigo-ade/tareas-rargentinaprograma#readme",
   "dependencies": {
     "bootstrap": "^5.2.3"
+  },
+  "devDependencies": {
+    "cypress": "^12.6.0"
   }
 }
