@@ -1,9 +1,8 @@
 const URL = "http://127.0.0.1:8080/clase-8-tarea-2/1/";
 const MAXIMOS_FAMILIARES = 10;
 const FAMILIARES_A_CREAR = 4;
-const EDADES_FAMILIARES_CORRECTAS = [7,18,48,53];     
 const EDADES_FAMILIARES_INCORRECTAS = [0,120,300,-53]; 
-
+const EDADES_FAMILIARES_CORRECTAS = [7,18,48,53];
 
 context("Prueba tarea 1", () => {
   before(() => {
@@ -45,24 +44,41 @@ context("Prueba tarea 1", () => {
 
   });
 
-  describe("Pruebas recomenzando el formulario", () => {
-    it("Verifica que el boton recomenzar funcione correctamente", () => {
+  describe("Prueba el boton recomenzar ", () => {
+    it("Verifica que funcione correctamente el boton recomenzar", () => {
       cy.get("#empezar-nuevamente").click();
       cy.get("#edades-familiares").children().should("have.length", 0);
     });
-    
 
   });
 
   describe("Pruebas completando el formulario correctamente", () => {
-    /*
-    Prueba exito:
-    cambio edades familiares entre 1 y 119 años, se debe tener el
-    "#resultados-edades" SIN class".oculto"; y:
-    "#mayor-edad" tiene que ser = NUMERO
-    "#menor-edad" tiene que ser = NUMERO
-    "#promedio-edad" tiene que ser = NUMERO (con 2 decimales ej: 44,45)
-    */
+    it("Valida que se muestren los resultados con edades válidas", () => {
+      cy.get("#cantidad-familiares").type(FAMILIARES_A_CREAR);
+      cy.get("#boton-cantidad-familiares").click();
+      cy.get(".edad-familiar").then(($edadesFamiliares) =>{
+        $edadesFamiliares.each((indice, $edadFamiliar) => {
+          cy.get($edadFamiliar).type(EDADES_FAMILIARES_CORRECTAS[indice]);
+        });
+      })
+      cy.get("#boton-calcular").click();
+      cy.get("#resultados-edades").should("be.visible");
+    });
+
+    it("Valida que los resultados sean correctos", () => {
+      cy.get("#mayor-edad").should("contain", EDADES_FAMILIARES_CORRECTAS[3]);
+      cy.get("#menor-edad").should("contain", EDADES_FAMILIARES_CORRECTAS[0]);
+      cy.get("#promedio-edad").should("contain", obtenerPromedioEdades(EDADES_FAMILIARES_CORRECTAS));
+    });
+
   });
 
 });
+
+function obtenerPromedioEdades(edades){
+  let edadesSuma = 0;
+  edades.forEach((edad)=>{
+    edadesSuma += edad;
+  });
+  return edadesSuma / edades.length;
+}
